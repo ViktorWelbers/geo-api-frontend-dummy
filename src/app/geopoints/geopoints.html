@@ -1,0 +1,25 @@
+
+<h2>The following points of interest were found</h2>
+<ul class="geopoints">
+  <li *ngFor="let data of geopoint.data | keyvalue">
+    <button [class.selected]="data === selectedGeoData" type="button" (click)="onSelect(data)">
+      <span class="badge">{{data.value}}</span>
+      <span class="name">{{data.key}}</span>
+    </button>
+  </li>
+</ul>
+
+<div *ngIf="selectedGeoData">
+  <h2> </h2>
+  <div>Point of Interest Kategorie: <b>{{selectedGeoData.key}}</b></div>
+  <div>Anzahl im Radius: <b>{{selectedGeoData.value}}</b></div>
+
+  <div class="editor">
+    <label for="geopoint-name">Ändere Point of Interest Kategorie: </label>
+    <input id="geopoint-name" [(ngModel)]="selectedGeoData.key" placeholder="Kategorie">
+  </div>
+  <div class="editor">
+    <label for="geopoint-anazahl">Ändere Anzahl der Point of Interests Kategorie: </label>
+    <input id="geopoint-anazahl" [(ngModel)]="selectedGeoData.value" placeholder="Anzahl" type=”tel”>
+  </div>
+</div>
